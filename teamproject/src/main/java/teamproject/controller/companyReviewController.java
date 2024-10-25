@@ -24,49 +24,50 @@ public class companyReviewController
 			if(request.getMethod().equals("GET"))
 			{
 				Search(request, response);
-			}else if(request.getMethod().equals("POST"))
-			{
 			}
-		}else if(comments[comments.length-1].equals("communityList.do"))
-		{
-			if(request.getMethod().equals("GET"))
-			{
-				communityList(request, response);
-			}else if(request.getMethod().equals("POST"))
-			{
-			}
-		}else if(comments[comments.length-1].equals("communityRegister.do"))
-		{
-			if(request.getMethod().equals("GET"))
-			{
-				communityRegister(request, response);
-			}else if(request.getMethod().equals("POST"))
-			{
-			}
-		}else if(comments[comments.length-1].equals("reviewList.do")) 
-		{
-			if(request.getMethod().equals("GET"))
-			{
-				reviewList(request, response);
-			}else if(request.getMethod().equals("POST"))
-			{
-			}
-		}else if(comments[comments.length-1].equals("reviewRegister.do")) 
-		{
-			if(request.getMethod().equals("GET"))
-			{
-				reviewRegister(request, response);
-			}else if(request.getMethod().equals("POST"))
-			{
-			}
-		}else if(comments[comments.length-1].equals("companyInfo.do")) 
-		{
-			if(request.getMethod().equals("GET"))
-			{
-				companyInfo(request, response);
-			}else if(request.getMethod().equals("POST"))
-			{
-			}
+//			}else if(request.getMethod().equals("POST"))
+//			{
+//			}
+//		}else if(comments[comments.length-1].equals("communityList.do"))
+//		{
+//			if(request.getMethod().equals("GET"))
+//			{
+//				communityList(request, response);
+//			}else if(request.getMethod().equals("POST"))
+//			{
+//			}
+//		}else if(comments[comments.length-1].equals("communityRegister.do"))
+//		{
+//			if(request.getMethod().equals("GET"))
+//			{
+//				communityRegister(request, response);
+//			}else if(request.getMethod().equals("POST"))
+//			{
+//			}
+//		}else if(comments[comments.length-1].equals("reviewList.do")) 
+//		{
+//			if(request.getMethod().equals("GET"))
+//			{
+//				reviewList(request, response);
+//			}else if(request.getMethod().equals("POST"))
+//			{
+//			}
+//		}else if(comments[comments.length-1].equals("reviewRegister.do")) 
+//		{
+//			if(request.getMethod().equals("GET"))
+//			{
+//				reviewRegister(request, response);
+//			}else if(request.getMethod().equals("POST"))
+//			{
+//			}
+//		}else if(comments[comments.length-1].equals("companyInfo.do")) 
+//		{
+//			if(request.getMethod().equals("GET"))
+//			{
+//				companyInfo(request, response);
+//			}else if(request.getMethod().equals("POST"))
+//			{
+//			}
 		}
 	}
 	
