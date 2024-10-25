@@ -4,7 +4,7 @@ import java.sql.*;
 public class DBConn
 {
 	public static final String URL = "jdbc:mysql://localhost:3306/Anonym?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC";
-	public static final String USERID = "tester";
+	public static final String USERID = "cteam";
 	public static final String USERPW = "ezen";
 //	public static final String USERID = "root";
 //	public static final String USERPW = "1234";
