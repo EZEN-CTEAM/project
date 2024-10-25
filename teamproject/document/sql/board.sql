@@ -133,7 +133,7 @@ CREATE TABLE COMPANY
 (
 	cno int NOT NULL AUTO_INCREMENT COMMENT '회사번호',
 	cid varchar(50) NOT NULL COMMENT '아이디',
-	cnickname varchar(50) COMMENT '닉네임',
+	cnickname varchar(50)  NOT NULL COMMENT '닉네임',
 	cpw varchar(50) NOT NULL COMMENT '비밀번호',
 	clogo varchar(50) NOT NULL COMMENT '회사로고',
 	cname varchar(50) NOT NULL COMMENT '회사명',
