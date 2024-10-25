@@ -29,12 +29,12 @@
 				</ul>
 			</nav>
 			<!-- 로그인 X -->
-			<nav>
+			<%-- <nav>
 				<ul class="nav-links">
 					<li><a href="<%= request.getContextPath() %>/user/login_p.jsp">로그인</a></li>
 					<li><a href="<%= request.getContextPath() %>/user/join_p.jsp">회원가입</a></li>
 				</ul>
-			</nav>
+			</nav> --%>
 			<!-- 로그인 O(개인) -->
 			<%-- <nav>
 				<ul class="nav-links">
@@ -80,7 +80,7 @@
 				</ul>
 			</nav> --%>
 			<!-- 로그인 O(기업) -->
-			<%-- <nav>
+			<nav>
 				<ul class="nav-links">
 					<li class="dropdown">
 						<a>마이페이지</a>
@@ -97,6 +97,6 @@
 						<a href="logout.jsp">로그아웃</a>
 					</li>
 				</ul>
-			</nav> --%>
+			</nav>
 		</div>    
 	</header>
