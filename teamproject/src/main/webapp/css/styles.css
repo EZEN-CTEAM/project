@@ -1,9 +1,9 @@
-/* 기본 스타일 초기화 */
+/* 湲곕낯 �뒪���씪 珥덇린�솕 */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', 'Noto Sans KR', AppleSDGothicNeo-Regular, 'Malgun Gothic', '맑은 고딕', dotum, '돋움', sans-serif;
+    font-family: 'Roboto', 'Noto Sans KR', AppleSDGothicNeo-Regular, 'Malgun Gothic', '留묒� 怨좊뵓', dotum, '�룍��', sans-serif;
   }
   
   body {
@@ -147,4 +147,21 @@
     border-top: 1px solid #e0e0e0;
     /* margin-top: 50px;*/
   }
+  
+  .dropdown_content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  }
+	
+	li:hover .dropdown_content {
+	  display: block;
+	}
+
   
