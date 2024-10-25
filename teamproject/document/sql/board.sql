@@ -59,7 +59,7 @@ CREATE TABLE CATTACH
 CREATE TABLE CCLIKE
 (
 	cclno int NOT NULL AUTO_INCREMENT COMMENT '번호',
-	cclrdate timestamp DEFAULT now() NOT NULL COMMENT '등록일',
+	cclrdate timestamp DEFAULT now() COMMENT '등록일',
 	-- E
 	-- D
 	cclstate char DEFAULT 'D' COMMENT '상태 : E
@@ -75,7 +75,7 @@ CREATE TABLE CCOMMENT
 (
 	ccno int NOT NULL AUTO_INCREMENT COMMENT '댓글번호',
 	cccontent text NOT NULL COMMENT '댓글내용',
-	ccrdate datetime NOT NULL COMMENT '작성일자',
+	ccrdate timestamp DEFAULT now() NOT NULL COMMENT '작성일자',
 	uno int NOT NULL COMMENT '회원번호',
 	cmno int NOT NULL COMMENT '커뮤니티 번호',
 	PRIMARY KEY (ccno)
@@ -118,10 +118,10 @@ H',
 CREATE TABLE COMMUNITY
 (
 	cmno int NOT NULL AUTO_INCREMENT COMMENT '커뮤니티 번호',
-	cmtitle varchar(250) COMMENT '제목',
-	cmcontent text COMMENT '내용',
-	cmrdate datetime COMMENT '작성일자',
-	cmhit int COMMENT '조회수',
+	cmtitle varchar(250) NOT NULL COMMENT '제목',
+	cmcontent text NOT NULL COMMENT '내용',
+	cmrdate timestamp DEFAULT now() COMMENT '작성일자',
+	cmhit int DEFAULT 0 COMMENT '조회수',
 	uno int NOT NULL COMMENT '회원번호',
 	cno int NOT NULL COMMENT '회사번호',
 	PRIMARY KEY (cmno)
@@ -158,9 +158,9 @@ W',
 CREATE TABLE FATTACH
 (
 	fano int NOT NULL AUTO_INCREMENT COMMENT '첨부번호',
-	fno int NOT NULL COMMENT '게시물번호',
 	fpname varchar(250) COMMENT '물리파일명',
 	ffname varchar(250) COMMENT '논리파일명',
+	fno int NOT NULL COMMENT '게시물번호',
 	PRIMARY KEY (fano)
 ) COMMENT = '자게첨부파일';
 
@@ -170,7 +170,7 @@ CREATE TABLE FCOMMENT
 (
 	fcno int NOT NULL AUTO_INCREMENT COMMENT '댓글번호',
 	fccontent text NOT NULL COMMENT '댓글내용',
-	fcrdate timestamp DEFAULT now() NOT NULL COMMENT '작성일자',
+	fcrdate timestamp DEFAULT now() COMMENT '작성일자',
 	fno int NOT NULL COMMENT '게시물번호',
 	uno int NOT NULL COMMENT '회원번호',
 	PRIMARY KEY (fcno)
@@ -211,10 +211,10 @@ D',
 CREATE TABLE FREE_BOARD
 (
 	fno int NOT NULL AUTO_INCREMENT COMMENT '게시물번호',
-	ftitle varchar(250) COMMENT '제목',
-	fcontent text COMMENT '내용',
-	frdate datetime COMMENT '작성일자',
-	fhit int COMMENT '조회수',
+	ftitle varchar(250) NOT NULL COMMENT '제목',
+	fcontent text NOT NULL COMMENT '내용',
+	frdate timestamp DEFAULT now() COMMENT '작성일자',
+	fhit int DEFAULT 0 COMMENT '조회수',
 	uno int NOT NULL COMMENT '회원번호',
 	PRIMARY KEY (fno)
 ) COMMENT = '자유게시물';
@@ -224,11 +224,11 @@ CREATE TABLE FREE_BOARD
 CREATE TABLE JOB_POSTING
 (
 	jno int NOT NULL AUTO_INCREMENT COMMENT '채용공고번호',
-	jtitle varchar(100) COMMENT '채용공고명',
-	jkind varchar(2) COMMENT '채용유형',
-	jperiod varchar(50) COMMENT '마감일',
-	jnote text COMMENT '직무내용',
-	jrdate timestamp DEFAULT now() COMMENT '등록일',
+	jtitle varchar(100) NOT NULL COMMENT '채용공고명',
+	jkind varchar(2) NOT NULL COMMENT '채용유형',
+	jperiod varchar(50) NOT NULL COMMENT '마감일',
+	jnote text NOT NULL COMMENT '직무내용',
+	jrdate timestamp DEFAULT now() NOT NULL COMMENT '등록일',
 	cno int NOT NULL COMMENT '회사번호',
 	PRIMARY KEY (jno)
 ) COMMENT = '채용공고등록';
@@ -263,7 +263,7 @@ CREATE TABLE RESUME
 	rsarea varchar(50) COMMENT '희망지역',
 	rsjob varchar(50) COMMENT '희망 직무',
 	rssalary varchar(50) COMMENT '희망연봉',
-	rsinfo text COMMENT '자기소개서',
+	rsinfo text NOT NULL COMMENT '자기소개서',
 	uno int NOT NULL COMMENT '회원번호',
 	PRIMARY KEY (rsno)
 ) COMMENT = '이력서';
@@ -273,15 +273,15 @@ CREATE TABLE RESUME
 CREATE TABLE REVIEW
 (
 	rvno int NOT NULL AUTO_INCREMENT COMMENT '리뷰번호',
-	rvstarrating int COMMENT '별점',
-	rvtitle varchar(250) COMMENT '제목',
-	rvgood text COMMENT '장점',
-	rvbad text COMMENT '단점',
-	rv1 int COMMENT '커리어향상',
-	rv2 int COMMENT '균형',
-	rv3 int COMMENT '급여복지',
-	rv4 int COMMENT '사내문화',
-	rv5 int COMMENT '경영진',
+	rvstarrating int NOT NULL COMMENT '별점',
+	rvtitle varchar(250) NOT NULL COMMENT '제목',
+	rvgood text NOT NULL COMMENT '장점',
+	rvbad text NOT NULL COMMENT '단점',
+	rv1 int NOT NULL COMMENT '커리어향상',
+	rv2 int NOT NULL COMMENT '균형',
+	rv3 int NOT NULL COMMENT '급여복지',
+	rv4 int NOT NULL COMMENT '사내문화',
+	rv5 int NOT NULL COMMENT '경영진',
 	uno int NOT NULL COMMENT '회원번호',
 	cno int NOT NULL COMMENT '회사번호',
 	PRIMARY KEY (rvno)
