@@ -29,6 +29,7 @@
 				</ul>
 			</nav>
 			<!-- 로그인 X -->
+<<<<<<< HEAD
 			<%-- <nav>
 				<ul class="nav-links">
 					<li><a href="<%= request.getContextPath() %>/user/login_p.jsp">로그인</a></li>
@@ -98,5 +99,76 @@
 					</li>
 				</ul>
 			</nav>
+=======
+			<nav>
+				<ul class="nav-links">
+					<li><a href="<%= request.getContextPath() %>/user/login_p.jsp">로그인</a></li>
+					<li><a href="<%= request.getContextPath() %>/user/join_p.jsp">회원가입</a></li>
+				</ul>
+			</nav>
+			<!-- 로그인 O(개인) -->
+			<%-- <nav>
+				<ul class="nav-links">
+					<li class="dropdown">
+						<a>마이페이지</a>
+						<ul class="dropdown-content">
+							<li>
+								<a href="<%= request.getContextPath() %>/myPage/personView.jsp">내 정보</a>
+							</li>
+							<li>
+								<a href="<%= request.getContextPath() %>/myPage/resumeList.jsp">이력서 관리</a>
+							</li>
+							<li>
+								<a href="<%= request.getContextPath() %>/myPage/applicationStatus.jsp"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" alt="Icon" class="menu-icon">지원 현황</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="logout.jsp">로그아웃</a>
+					</li>
+				</ul>
+			</nav> --%>
+			<!-- 로그인 O(관리자) -->
+			<%-- <nav>
+				<ul class="nav-links">
+					<li class="dropdown">
+						<a>마이페이지</a>
+						<ul class="dropdown-content">
+							<li>
+								<a href="<%= request.getContextPath() %>/myPage/admin.jsp"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" alt="Icon" class="menu-icon">기업 승인 관리</a>
+							</li>
+							<li>
+								<a href="<%= request.getContextPath() %>/myPage/adminReport.jsp"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" alt="Icon" class="menu-icon">신고 리스트</a>
+							</li>
+							<li>
+								<a href="<%= request.getContextPath() %>/myPage/adminUser.jsp">회원 관리</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="<%= request.getContextPath() %>/user/logout.jsp">로그아웃</a>
+					</li>
+				</ul>
+			</nav> --%>
+			<!-- 로그인 O(기업) -->
+			<%-- <nav>
+				<ul class="nav-links">
+					<li class="dropdown">
+						<a>마이페이지</a>
+						<ul class="dropdown-content">
+							<li>
+								<a href="<%= request.getContextPath() %>/myPage/companyView.jsp">내 정보</a>
+							</li>
+							<li>
+								<a href="#">내가 작성한 글</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="logout.jsp">로그아웃</a>
+					</li>
+				</ul>
+			</nav> --%>
+>>>>>>> branch 'main' of https://github.com/EZEN-CTEAM/project.git
 		</div>    
 	</header>
