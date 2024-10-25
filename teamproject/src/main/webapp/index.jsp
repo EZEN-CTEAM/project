@@ -1,51 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blind - 익명 커뮤니티</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="index.css" />
-</head>
-<body>
-  <!-- 헤더: 네비게이션 바 -->
-  <header>
-    <div class="navbar">
-      <div class="logo"><a href="index.html">Anonym</a></div>
-          <nav>
-            <ul class="nav-menu">
-              <li><a href="f자유게시판목록_최종.html">자유게시판</a></li>
-              <li><a href="cindex.html">기업 리뷰</a></li>
-              <li><a href="recruitment_information.html" class="applyinfo">채용 공고</a></li>
-              <li><a href="company_service.html" class="companyservice" onblur="">기업 서비스</a>
-                <ul class="dropdown_content">
-                  <li><a href="company_service.html" class="implyeement_apply">취업 공고 관리</a></li>
-                  <li class="dropdown_2nd">
-                    <a href="volunteer_management.html" class="volunteer_management"><img src="https://img.icons8.com/?size=100&id=99634&format=png&color=ff5252" width="17px">지원자관리</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </nav>
-          <nav>
-          <ul class="nav-links">
-              <li><a href="login.html">로그인</a></li>
-              <li><a href="join_person.html">회원가입</a></li>
-          </ul>
-          </nav>
-    </div>    
-  </header>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../include/header.jsp" %>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/css/index.css" />
 
   <!-- 메인 컨텐츠 -->
   <main>
     <div class="main_apply">
-      <img src="logo/인덱스 가로 배너.PNG">
+      <img src="image/인덱스 가로 배너.PNG">
     </div>
     <div class="main-container">
         <section class="intro">
-          <form action="#" method="get">
+          <form action="index_search.jsp" method="get">
             <div>
               <input onkeyup="enterkey();" type="text" name="index_search" size="80" placeholder="관심있는 내용을 검색해보세요 !">
+              <button onclick="href='index_search.jsp'">검색</button>
             </div>
           </form>
         </section>
@@ -53,7 +21,7 @@
         <!-- 사이드 배너 -->
         <aside>
           <div class="ad_banner" width="150px" height="300px">
-            <img src="logo/인덱스 새로 배너.PNG" width="200px" height="400px">
+            <img src="<%= request.getContextPath() %>/image/인덱스 새로 배너.PNG" width="200px" height="400px">
           </div>
         </aside>
 
@@ -61,11 +29,11 @@
         <section class="board-container">
           <div class="free_title">
             <h3 class="img_area"><img src="https://img.icons8.com/?size=100&id=FR7Wf3HTQISd&format=png&color=000000" width="20px"> 인기글</h3>
-            <a href="#">더보기 ></a>
+            <a href="<%= request.getContextPath() %>/freeBoard/freeList.jsp">더보기 ></a>
           </div>
           <div class="free_list">
             <div class="list_title">
-              순번 <a href="#">제목</a>
+              순번 <a href="<%= request.getContextPath() %>/freeBoard/freeView.jsp">제목</a>
             </div>
             <div class="goodcomment_count">
               <img src="https://img.icons8.com/?size=100&id=89385&format=png&color=000000" width="17px">좋아요 개수
@@ -140,12 +108,12 @@
         <!-- 인기 채용 -->
         <section class="board-container">
           <div class="apply_title">
-            <h3 class="img_area"><img src="https://img.icons8.com/?size=100&id=53426&format=png&color=000000" width="20px"> 채용 정보</h3>
-            <a href="#">더보기 ></a>
+            <h3 class="img_area"><img src="https://img.icons8.com/?size=100&id=53426&format=png&color=000000" width="20px"> 채용 공고</h3>
+            <a href="<%= request.getContextPath() %>/jobPosting/jobList.jsp">더보기 ></a>
           </div>
           <div class="apply_list">
             <div>
-              <a href="#">
+              <a href="<%= request.getContextPath() %>/jobPosting/jobView.jsp">
                 <div class="company_logo">
                   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATcAAACiCAMAAAATIHpEAAAAgVBMVEX0MUL////0JzrzGjH7vsH8ztH0IzfzFC7zHTP3hYz5naL3gYn94+X3fYX0L0D+7/DzACX7ycz82dv5o6j5n6T7xcj4kpjzACT5par3eYH6tLj93t/6rrL4jZP80NL82Nn1TVr1V2P1R1T+6uv2YGv0P07+9/j2b3jzABP0OUj6ur49H+PtAAADSklEQVR4nO3ca1vaMBiA4ZCWpiiEAqJ4dsPp5v//gUPYLElbkPZqXN4991cjl3mWNBw6lAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyTKzk9imETb/MyTzf5CYI/Ke//gvY83derw1zBrCaT3bjVjfJe7vqsfxEalp/NeImrbzwV9p/eLInqYfQ671/k/y5eCoZSExXP7tpZziMKkZYc35XoWR0y2ZHe8mMZw1l/szrOtmzc3+kBbdBjNp4bS3z2q6aXXrDGnTTVq47PvanV+1W/L84g5p1W0wk3Q4mGt/en43bxu37yYo3ObpR2V2XjebVI/Llt3EhNN6Xp2c2y37sa4O8boNP9tNSDjn6Ud9N/NaN323m65s9QPh4j8cbFG5bvndbLGqHeJ2U9nzpNn1m/voV5GHq7tued109lA/xOu22e8HXN24Dx/3irP+049qN7v3yupwt8MK9+wZRn2Ny84ampTdsoumIad1U8bd7VEfDl63dXmtK7u5Q4Zp225+uJhXnBtlWUyOdVv9bN9NmYWUcE6U+0KXb3fUd3s1eYducsLtRZk+5epIt/EvrTp188M9xHqqllGWyabC4W4378ujWzc/3GOkK05fvky3RtsJ1HX7GDLZDunYTRn3eJ43f5DxT9PJzi5BXTdvSNduyntfZZ7HGc5R283VuZvEcEG6CQwXplslXKTXuFKgbsrcO+FuIz1VP4TqJi1csG6VcHFv1XDdVDJyw0V9OATsppKJnHAhu6nE/UBi7N/fFJGQ3axJnW4run2GNe4HGwvT4cG+WrhuthCULWA3L9tF1NmCdbOFe1PEWdzZQnXzN2nkqy1UN/9IiD5bmG7ysgXpJjBbiG7WyDoStvrvJu0k3em9m8xsvXcTmq3vbiKvbe/67SY2W7/d/Gxxv5R39NnNz7aSk63PbrYYis12Yrdzk33elZtN0CZVp3ZLz07g3pO+KMJOrGendWtP1moL1k1atkDdxGUL001etiDdJLzf5gvQTWK2AN1EZtvv9tBLNzkv5R26/P+5bw1fypMtDmT5T7NtVtNomW7dNd5WZS7Sti6lZnv/GpGdpq9H2sjytrrd9wUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkfkNDKw2lxqcgM8AAAAASUVORK5CYII=" width="164px" height="82px">
                 </div>
@@ -278,11 +246,4 @@
     </div>
   </main>
 
-  <!-- 푸터 -->
-  <footer class="footer">
-    <p>&copy; 2024 Blind Inc. | <a href="#">개인정보 처리방침</a></p>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<%@ include file="../include/footer.jsp" %>
