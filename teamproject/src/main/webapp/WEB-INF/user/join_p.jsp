@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="teamproject.vo.*" %>
+<%@ page import="java.util.*" %> 
 <%@ include file="../include/header.jsp" %>
+<% 
+request.setCharacterEncoding("UTF-8");
+List<Company> companies = (List<Company>) request.getAttribute("companies");
+%>  
 <link rel="stylesheet" href="../css/k_styles.css" />
 <link rel="stylesheet" href="../css/join_styles.css" />
-<script>
+<!-- <script>
 	function employmentField() {
 	    const companyField = document.getElementById('ucompany');
 	    const isUnemployed = document.querySelector('input[name="uemployment"]:checked').value === 'I';
@@ -17,7 +23,7 @@
 	        companyField.style.backgroundColor = '';
 	    }
 	}
-</script>
+</script> -->
 
         <!-- 메인 컨텐츠 -->
         <main>
@@ -50,7 +56,14 @@
                     </div>
                     <div class="joinIP">회사명</div>
                     <select>
-                    	<option>회사명</option>
+                    	<option>회사선택</option>
+                    	<% 
+                    		for (Company company : companies) {
+                    	%>
+                    	<option><%= company.getCompanyName() %></option>
+                    	<% 
+                    		}
+                    	%>
                     </select>
                     <input type="text" name="ucompany" id="ucompany" required>
                     <br>

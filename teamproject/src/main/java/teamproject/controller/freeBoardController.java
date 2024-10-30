@@ -18,7 +18,7 @@ public class freeBoardController
 {
 	public freeBoardController(HttpServletRequest request, HttpServletResponse response, String[] comments) throws ServletException, IOException 
 	{
-		// 개인회원로그인
+		// 媛쒖씤�쉶�썝濡쒓렇�씤
 		if(comments[comments.length-1].equals("login_p.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -28,7 +28,7 @@ public class freeBoardController
 			{
 				login_pOk(request, response);
 			}
-		// 기업회원로그인
+		// 湲곗뾽�쉶�썝濡쒓렇�씤
 		}else if(comments[comments.length-1].equals("login_c.do"))
 		{
 			if(request.getMethod().equals("GET"))
@@ -38,7 +38,7 @@ public class freeBoardController
 			{
 				login_cOk(request, response);
 			}
-		// 개인회원가입	
+		// 媛쒖씤�쉶�썝媛��엯	
 		}else if(comments[comments.length-1].equals("join_p.do")) 
 		{
 			if(request.getMethod().equals("GET"))
@@ -48,7 +48,7 @@ public class freeBoardController
 			{
 				join_pOk(request, response);
 			}
-		// 기업회원가입
+		// 湲곗뾽�쉶�썝媛��엯
 		}else if(comments[comments.length-1].equals("join_c.do")) 
 		{
 			if(request.getMethod().equals("GET"))
@@ -61,7 +61,7 @@ public class freeBoardController
 		}
 	}
 	
-	// 개인회원로그인
+	// 媛쒖씤�쉶�썝濡쒓렇�씤
 	public void login_p(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.getRequestDispatcher("/WEB-INF/user/login_p.jsp").forward(request, response);
@@ -95,8 +95,8 @@ public class freeBoardController
 			{
 				UserVO loginUser = new UserVO();
 				
-				loginUser.setUno(rs.getString("uno"));
-				loginUser.setUnickname(rs.getString("unickname"));
+//				loginUser.setUno(rs.getString("uno"));
+//				loginUser.setUnickname(rs.getString("unickname"));
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
@@ -122,7 +122,7 @@ public class freeBoardController
 		}
 	}
 	
-	//기업회원로그인
+	//湲곗뾽�쉶�썝濡쒓렇�씤
 	public void login_c(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.getRequestDispatcher("/WEB-INF/user/login_c.jsp").forward(request, response);
@@ -186,7 +186,7 @@ public class freeBoardController
 		}
 	}
 	
-	// 개인회원가입
+	// 媛쒖씤�쉶�썝媛��엯
 	public void join_p(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.getRequestDispatcher("/WEB-INF/user/join_person.jsp").forward(request, response);
@@ -201,8 +201,8 @@ public class freeBoardController
 	    String uemployment = request.getParameter("uemployment");
 //	    String cname = request.getParameter("cname");
 
-		System.out.println("아이디" + uid);
-		System.out.println("비밀번호" + upw);
+		System.out.println("�븘�씠�뵒" + uid);
+		System.out.println("鍮꾨�踰덊샇" + upw);
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -245,7 +245,7 @@ public class freeBoardController
 		}
 	}
 	
-	// 기업회원가입
+	// 湲곗뾽�쉶�썝媛��엯
 	public void join_c(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		request.getRequestDispatcher("/WEB-INF/user/join_company.jsp").forward(request, response);
@@ -270,18 +270,18 @@ public class freeBoardController
 		
 		String firstItem = addr[0];
 
-	    // 나머지 요소들을 result에 추가
+	    // �굹癒몄� �슂�냼�뱾�쓣 result�뿉 異붽�
 	    for (int i = 1; i < addr.length; i++) {
-	    	add += addr[i] + " "; // 공백 추가
+	    	add += addr[i] + " "; // 怨듬갚 異붽�
 	    }
 
-	    // 괄호 안에 첫 번째 요소 추가
+	    // 愿꾪샇 �븞�뿉 泥� 踰덉㎏ �슂�냼 異붽�
 	    add += "(" + firstItem + ")";
 		
 		System.out.println(add);		
 
-		System.out.println("아이디" + cid);
-		System.out.println("비밀번호" + cpw);
+		System.out.println("�븘�씠�뵒" + cid);
+		System.out.println("鍮꾨�踰덊샇" + cpw);
 
 		Connection conn = null;
 		PreparedStatement stmt = null;

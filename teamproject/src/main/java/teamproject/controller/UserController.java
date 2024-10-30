@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import teamproject.util.DBConn;
+import teamproject.vo.Company;
 import teamproject.vo.CompanyVO;
 import teamproject.vo.UserVO;
 
@@ -95,8 +98,8 @@ public class UserController
 			{
 				UserVO loginUser = new UserVO();
 				
-				loginUser.setUno(rs.getString("uno"));
-				loginUser.setUnickname(rs.getString("unickname"));
+//				loginUser.setUno(rs.getString("uno"));
+//				loginUser.setUnickname(rs.getString("unickname"));
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", loginUser);
@@ -159,8 +162,8 @@ public class UserController
 			{
 				CompanyVO loginUserc = new CompanyVO();
 				
-				loginUserc.setCno(rs.getString("cno"));
-				loginUserc.setCname(rs.getString("cname"));
+//				loginUserc.setCno(rs.getString("cno"));
+//				loginUserc.setCname(rs.getString("cname"));
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUserc", loginUserc);
@@ -189,7 +192,48 @@ public class UserController
 	// 개인회원가입
 	public void join_p(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		request.getRequestDispatcher("/WEB-INF/user/join_p.jsp").forward(request, response);
+		List<Company> companies = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		
+		try 
+		{
+			conn = DBConn.conn();
+			
+			// 회사목록
+			String sql = "SELECT c.company_name FROM company_employee ce INNER JOIN company c ON c.company_no = ce.company_no ";
+			
+			ptmt = conn.prepareStatement(sql);
+			
+			rs = ptmt.executeQuery();
+			
+			// 찾은 상세 데이터 request에 담기
+			while(rs.next())
+			{
+				companies.add(new Company(rs.getString("company_name")));
+			}
+			
+			System.out.println(companies.size());
+			request.setAttribute("companies", companies);
+			
+			// /WEB-INF/user/join_p.jsp 포워드
+			request.getRequestDispatcher("/WEB-INF/user/join_p.jsp").forward(request, response);
+			
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+		}finally
+		{
+			try 
+			{
+				DBConn.close(rs, ptmt, conn);
+			} catch (Exception e) 
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	public void join_pOk(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -266,26 +310,28 @@ public class UserController
 	    String cbrc = request.getParameter("cbrc");
 		String[] addr = request.getParameterValues("clocation");
 		
-		String add = "";
+		String clocation = "";
 		
 		String firstItem = addr[0];
 
 	    // 나머지 요소들을 result에 추가
 	    for (int i = 1; i < addr.length; i++) {
-	    	add += addr[i] + " "; // 공백 추가
+	    	clocation += addr[i] + " "; // 공백 추가
 	    }
 
 	    // 괄호 안에 첫 번째 요소 추가
-	    add += "(" + firstItem + ")";
+	    clocation += "(" + firstItem + ")";
 		
-		System.out.println(add);		
+		System.out.println(clocation);		
 
 		System.out.println("아이디" + cid);
 		System.out.println("비밀번호" + cpw);
 
 		Connection conn = null;
 		PreparedStatement stmt = null;
+		PreparedStatement ptmt = null;
 		ResultSet rs = null;
+		String cno = "";
 		
 		try 
 		{
@@ -293,7 +339,7 @@ public class UserController
 			
 			String sql = "insert into "
 					+ "company "
-					+ "(cid, cpw, clogo, cname, clocation, cemployee, cindustry, canniversary, cbrcnum, cbrc, cnickname) "
+					+ "(company_id, company_pw, company_logo, company_name, company_location, company_employee, company_industry, company_anniversary, company_brc_num, company_brc, company_nickname) "
 					+ "values "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			
@@ -302,7 +348,7 @@ public class UserController
 			stmt.setString(2, cpw);
 			stmt.setString(3, clogo);
 			stmt.setString(4, cname);
-			stmt.setString(5, add);
+			stmt.setString(5, clocation);
 			stmt.setString(6, cemployee);
 			stmt.setString(7, cindustry);
 			stmt.setString(8, canniversary);
@@ -314,7 +360,24 @@ public class UserController
 			
 			if(result > 0)
 			{
-				System.out.println(cname); 
+				rs = stmt.executeQuery("SELECT LAST_INSERT_ID() as company_no");
+				
+				if( rs.next() )
+				{
+					cno = rs.getString("company_no");
+					
+					sql = "insert into company_employee (company_no) values (?)";
+				    
+				    ptmt = conn.prepareStatement(sql);
+				    ptmt.setString(1, cno);
+				    
+				    int resultce = ptmt.executeUpdate();
+				    
+				    if( resultce > 0 )
+				    {
+				    	System.out.println(cno);
+				    }
+				}
 			}
 			
 			response.sendRedirect("login_c.do");

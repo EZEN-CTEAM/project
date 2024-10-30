@@ -46,7 +46,7 @@ main {
 
   .personIP input[type="text"],
   .personIP input[type="password"],
-  .personIP select {
+  .personIP select{
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
@@ -58,8 +58,7 @@ main {
 
 .companyIP input[type="text"],
 .companyIP input[type="password"],
-.companyIP input[type="file"],
-.companyIP input[type="date"] {
+.companyIP input[type="file"]{
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -68,8 +67,17 @@ main {
     margin-bottom: 15px;
     font-size: 1rem;
 }
+.companyIP select,
+.companyIP input[type="date"]{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
 
-/*우편 번호*/
+/*�슦�렪 踰덊샇*/
 .postcode-container {
     display: flex;
     justify-content: space-between;
@@ -138,3 +146,48 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .join-menu a:hover {
     color: #ff5252;
 }
+
+.form-group {
+    display: flex; /* 플렉스박스 사용 */
+    flex-direction: column;
+    margin-bottom: 10px; /* 요소 간 간격 */
+  }
+
+  .form-group label {
+    margin-right: 10px; /* 라벨과 입력 필드 간 간격 */
+    width: 100px; /* 라벨 고정 너비 */
+  }
+
+  .sbtn{
+	border: 1px solid blue;
+  	color: blue;
+  }
+  
+  .cbtn{
+	border: 1px solid red;
+  	color: red;
+  }
+  
+  .form-group input {
+  size: 5;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+    flex: 1; /* input이 가능한 공간을 채움 */
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group button{
+	cursor: pointer;
+	border-radius: 4px;
+	background-color: white;
+  	padding: 12px;	
+  	height: 40px;
+}
+
+
+
