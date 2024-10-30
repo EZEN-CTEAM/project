@@ -39,7 +39,7 @@
                     }
                 }).open();
             } */
-                function addressSearch() {
+               /*  function addressSearch() {
                     new daum.Postcode({
                         oncomplete: function(data) {
                             var addr = ''; 
@@ -72,7 +72,28 @@
                             document.getElementById("detailAddress").focus();
                         }
                     }).open();
-                }
+                } */
+            	
+            	function searchAddress() {
+            	new daum.Postcode({
+            	oncomplete: function(data) { // 선택시 입력값 세팅
+            	document.getElementById("userAddress").value = data.address; // 주소 넣기
+            	document.getElementById("userPostCode").value = data.zonecode; // 우편번호 넣기
+            	var inputDtlAddr = document.getElementById("userDtlAddress"); // 주소란 읽기전용 설정
+            	inputDtlAddr.readOnly = false;
+            	}
+            	}).open();
+            	}
+            	
+            	function cancelAddress() {
+            	var inputPostCode = document.getElementById("userPostCode");
+            	inputPostCode.value = "" // 우편번호 초기화
+            	var inputAddr = document.getElementById("userAddress");
+            	inputAddr.value = "" // 주소란 초기화
+            	var inputDtlAddr = document.getElementById("userDtlAddress");
+            	inputDtlAddr.value = "" // 상세주소란 초기화
+            	inputDtlAddr.readOnly = true; // 상세주소란 읽기전용 해제
+            	}
         </script>
 
         <!-- 메인 컨텐츠 -->
@@ -97,26 +118,38 @@
                     <input type="text" name="cnickname">
                     <!-- <div class="joinIP">위치</div>
                     <input type="text" name="clocation"> -->
-                    <div class="form-group">
+                    <div class="form-group joinIP">
 						<label for="userPostCode">우편번호</label>
+						<div class="input-group">
 						<input type="text" id="userPostCode" name="clocation" readonly>&nbsp;&nbsp;
 						<button type="button" onclick="searchAddress();" class="sbtn">검색</button>&nbsp;
 						<button type="button" onclick="cancelAddress();" class="cbtn">취소</button>
+						</div>
 					</div>
-					<div class="form-group">
-					  	<label for="userAddress">주소</label>
+					<div class="form-group joinIP">
+					  	<label for="userAddress joinIP">주소</label>
 				  		<input type="text" id="userAddress" name="clocation" readonly>
 					</div>
-					<div class="form-group">
+					<div class="form-group joinIP">
 					  <label for="userDtlAddress">상세주소</label>
 					  <input type="text" id="userDtlAddress" name="clocation" maxlength="100" readonly>
 					</div>
                     <div class="joinIP">직원수</div>
                     <input type="text" name="cemployee">
                     <div class="joinIP">업계</div>
-                    <input type="text" name="cindustry">
+                    <select name="cindustry">
+                    	<option vlaue="ci1">제조업</option>
+                    	<option vlaue="ci2">건설업</option>
+                    	<option vlaue="ci3">도매 및 소매업</option>
+                    	<option vlaue="ci4">숙박 및 음식점업</option>
+                    	<option vlaue="ci5">운수업</option>
+                    	<option vlaue="ci6">통신업</option>
+                    	<option vlaue="ci7">금융 및 보험업</option>
+                    	<option vlaue="ci8">사업서비스업</option>
+                    </select>
+                    <!-- <input type="text" name="cindustry"> -->
                     <div class="joinIP">설립일</div>
-                    <input type="text" name="canniversary"><br>
+                    <input type="date" name="canniversary"><br>
                     <div class="joinIP">사업자등록번호</div>
                     <input type="text" name="cbrcnum">
                     <div class="joinIP">사업자등록증</div>
