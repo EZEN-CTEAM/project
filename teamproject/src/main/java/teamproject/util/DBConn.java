@@ -15,16 +15,16 @@ public class DBConn
 		return DriverManager.getConnection(URL, USERID, USERPW);
 	}
 	
-	public static void close(ResultSet rs, PreparedStatement stmt, Connection conn) throws Exception 
+	public static void close(ResultSet rs, PreparedStatement psmt, Connection conn) throws Exception 
 	{
 		if(rs != null) rs.close();
-		if(stmt != null) stmt.close();
+		if(psmt != null) psmt.close();
 		if(conn != null) conn.close();	
 	}
 
-	public static void close(PreparedStatement stmt, Connection conn) throws Exception 
+	public static void close(PreparedStatement psmt, Connection conn) throws Exception 
 	{
-		if(stmt != null) stmt.close();
+		if(psmt != null) psmt.close();
 		if(conn != null) conn.close();	
 	}
 }

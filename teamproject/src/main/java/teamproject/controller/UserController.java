@@ -76,7 +76,7 @@ public class UserController
 		String pw = request.getParameter("pw");
 		
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
 		try 
@@ -88,11 +88,11 @@ public class UserController
 					+ "FROM user "
 					+ "WHERE uid = ? AND upw = ? ";
 			
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, id);
-			stmt.setString(2, pw);
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
 			
-			rs = stmt.executeQuery();
+			rs = psmt.executeQuery();
 			
 			if(rs.next())
 			{
@@ -117,7 +117,7 @@ public class UserController
 		{
 			try 
 			{
-				DBConn.close(rs, stmt, conn);
+				DBConn.close(rs, psmt, conn);
 			} catch (Exception e) 
 			{
 				e.printStackTrace();
@@ -140,7 +140,7 @@ public class UserController
 		System.out.println(pw);
 		
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
 		try 
@@ -152,11 +152,11 @@ public class UserController
 					+ "FROM company "
 					+ "WHERE cid = ? AND cpw = ?";
 			
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, id);
-			stmt.setString(2, pw);
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			psmt.setString(2, pw);
 			
-			rs = stmt.executeQuery();
+			rs = psmt.executeQuery();
 			
 			if(rs.next())
 			{
@@ -181,7 +181,7 @@ public class UserController
 		{
 			try 
 			{
-				DBConn.close(rs, stmt, conn);
+				DBConn.close(rs, psmt, conn);
 			} catch (Exception e) 
 			{
 				e.printStackTrace();
@@ -249,7 +249,7 @@ public class UserController
 		System.out.println("비밀번호" + upw);
 
 		Connection conn = null;
-		PreparedStatement stmt = null;
+		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
 		try 
@@ -258,14 +258,14 @@ public class UserController
 			
 			String sql = "insert into user (uid, upw, uemployment, unickname) values (?, ?, ?, ?)";
 			
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, uid);
-			stmt.setString(2, upw);
-			stmt.setString(3, uemployment);
-			stmt.setString(4, unickname);
-//			stmt.setString(5, cname);
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, uid);
+			psmt.setString(2, upw);
+			psmt.setString(3, uemployment);
+			psmt.setString(4, unickname);
+//			psmt.setString(5, cname);
 			
-			int result = stmt.executeUpdate();
+			int result = psmt.executeUpdate();
 			
 			if(result > 0)
 			{
@@ -281,7 +281,7 @@ public class UserController
 		{
 			try 
 			{
-				DBConn.close(rs, stmt, conn);
+				DBConn.close(rs, psmt, conn);
 			} catch (Exception e) 
 			{
 				e.printStackTrace();
@@ -328,8 +328,7 @@ public class UserController
 		System.out.println("비밀번호" + cpw);
 
 		Connection conn = null;
-		PreparedStatement stmt = null;
-		PreparedStatement ptmt = null;
+		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		String cno = "";
 		
@@ -343,24 +342,24 @@ public class UserController
 					+ "values "
 					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 			
-			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, cid);
-			stmt.setString(2, cpw);
-			stmt.setString(3, clogo);
-			stmt.setString(4, cname);
-			stmt.setString(5, clocation);
-			stmt.setString(6, cemployee);
-			stmt.setString(7, cindustry);
-			stmt.setString(8, canniversary);
-			stmt.setString(9, cbrcnum);
-			stmt.setString(10, cbrc);
-			stmt.setString(11, cnickname);
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, cid);
+			psmt.setString(2, cpw);
+			psmt.setString(3, clogo);
+			psmt.setString(4, cname);
+			psmt.setString(5, clocation);
+			psmt.setString(6, cemployee);
+			psmt.setString(7, cindustry);
+			psmt.setString(8, canniversary);
+			psmt.setString(9, cbrcnum);
+			psmt.setString(10, cbrc);
+			psmt.setString(11, cnickname);
 			
-			int result = stmt.executeUpdate();
+			int result = psmt.executeUpdate();
 			
 			if(result > 0)
 			{
-				rs = stmt.executeQuery("SELECT LAST_INSERT_ID() as company_no");
+				rs = psmt.executeQuery("SELECT LAST_INSERT_ID() as company_no");
 				
 				if( rs.next() )
 				{
@@ -368,10 +367,10 @@ public class UserController
 					
 					sql = "insert into company_employee (company_no) values (?)";
 				    
-				    ptmt = conn.prepareStatement(sql);
-				    ptmt.setString(1, cno);
+					psmt = conn.prepareStatement(sql);
+					psmt.setString(1, cno);
 				    
-				    int resultce = ptmt.executeUpdate();
+				    int resultce = psmt.executeUpdate();
 				    
 				    if( resultce > 0 )
 				    {
@@ -389,7 +388,7 @@ public class UserController
 		{
 			try 
 			{
-				DBConn.close(rs, stmt, conn);
+				DBConn.close(rs, psmt, conn);
 			} catch (Exception e) 
 			{
 				e.printStackTrace();
